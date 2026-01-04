@@ -91,7 +91,67 @@
                 </div>
             </div>
         </section>
+
+        <!-- Showcase / Gallery Section -->
+        <section id="showcase" class="section-showcase">
+            <div class="container">
+                <!-- Pre-image Text -->
+                <div class="text-block text-center mb-large">
+                    <h2 class="section-title" data-i18n="gallery_title">Moods & Atmospheres</h2>
+                    <p class="section-subtitle" data-i18n="gallery_subtitle">Experience the spectrum of light.</p>
+                </div>
+
+                <!-- Carousel -->
+                <div class="carousel-container" id="gallery-carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop"
+                                alt="Romantic Living Room">
+                            <div class="slide-caption" data-i18n="slide_1_caption">Romantic Evening</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=1200&auto=format&fit=crop"
+                                alt="Modern Bedroom">
+                            <div class="slide-caption" data-i18n="slide_2_caption">Morning Clarity</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop"
+                                alt="Cozy Lounge">
+                            <div class="slide-caption" data-i18n="slide_3_caption">Deep Relaxation</div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous">&#10094;</button>
+                    <button class="carousel-btn next" aria-label="Next">&#10095;</button>
+                </div>
+
+                <!-- Post-image Text -->
+                <div class="text-block mt-large text-center">
+                    <h3 class="text-highlight" data-i18n="gallery_quote">"Light is the fourth dimension of
+                        architecture."</h3>
+                    <p class="text-body" data-i18n="gallery_desc">
+                        Seamlessly transition between scenes. Our API-driven presets allow you to curate your
+                        environment with a single touch.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Registration Footer -->
+    <footer id="newsletter" class="footer-registration">
+        <div class="container footer-inner">
+            <div class="footer-text">
+                <h4 data-i18n="footer_title">Stay Illuminated</h4>
+                <p data-i18n="footer_desc">Join the waitlist for exclusive updates.</p>
+            </div>
+            <form class="registration-form" onsubmit="event.preventDefault();">
+                <input type="text" placeholder="Full Name" class="input-field" data-i18n="footer_name" required>
+                <input type="email" placeholder="Email Address" class="input-field" data-i18n="footer_email" required>
+                <input type="tel" placeholder="Phone Number" class="input-field" data-i18n="footer_phone" required>
+                <button type="submit" class="btn btn-gold" data-i18n="footer_btn">Subscribe</button>
+            </form>
+        </div>
+    </footer>
 
     <!-- Application Logic -->
     <script>
@@ -158,6 +218,32 @@
         }
 
         /**
+         * Carousel Component
+         * Handles image sliding logic.
+         */
+        class Carousel extends UIComponent {
+            init() {
+                this.track = this.element.querySelector('.carousel-track');
+                this.slides = Array.from(this.track.children);
+                this.nextBtn = this.element.querySelector('.next');
+                this.prevBtn = this.element.querySelector('.prev');
+                this.currentIndex = 0;
+
+                if (this.nextBtn && this.prevBtn) {
+                    this.nextBtn.addEventListener('click', () => this.moveSlide(1));
+                    this.prevBtn.addEventListener('click', () => this.moveSlide(-1));
+                }
+            }
+
+            moveSlide(direction) {
+                this.currentIndex = (this.currentIndex + direction + this.slides.length) % this.slides.length;
+                // For LTR/RTL agnostic sliding, we simply translate X by percentage
+                const amount = this.currentIndex * -100;
+                this.track.style.transform = `translateX(${amount}%)`;
+            }
+        }
+
+        /**
          * Language Manager
          * Handles translations and RTL/LTR switching.
          */
@@ -177,7 +263,20 @@
                         hero_desc: "The Siman 3 Triple Circuit Switch. Precision intensity and temperature control in a singular, architectural interface.",
                         hero_btn_discover: "Discover Siman 3",
                         hero_btn_watch: "Watch Film",
-                        lang_btn: "HE"
+                        lang_btn: "HE",
+                        gallery_title: "Moods & Atmospheres",
+                        gallery_subtitle: "Experience the spectrum of light.",
+                        slide_1_caption: "Romantic Evening",
+                        slide_2_caption: "Morning Clarity",
+                        slide_3_caption: "Deep Relaxation",
+                        gallery_quote: "\"Light is the fourth dimension of architecture.\"",
+                        gallery_desc: "Seamlessly transition between scenes. Our API-driven presets allow you to curate your environment with a single touch.",
+                        footer_title: "Stay Illuminated",
+                        footer_desc: "Join the waitlist for exclusive updates.",
+                        footer_name: "Full Name",
+                        footer_email: "Email Address",
+                        footer_phone: "Phone Number",
+                        footer_btn: "Subscribe"
                     },
                     he: {
                         nav_product: "סימן 3",
@@ -189,7 +288,20 @@
                         hero_desc: "מתג המעגל המשולש סימן 3. שליטה מדויקת בעוצמה ובטמפרטורה בממשק אדריכלי יחיד.",
                         hero_btn_discover: "גלה את סימן 3",
                         hero_btn_watch: "צפה בסרטון",
-                        lang_btn: "EN"
+                        lang_btn: "EN",
+                        gallery_title: "מצבי רוח ואווירה",
+                        gallery_subtitle: "חווה את כל ספקטרום האור.",
+                        slide_1_caption: "ערב רומנטי",
+                        slide_2_caption: "צלילות של בוקר",
+                        slide_3_caption: "רגיעה עמוקה",
+                        gallery_quote: "\"אור הוא המימד הרביעי של הארכיטקטורה.\"",
+                        gallery_desc: "עבור בצורה חלקה בין סצנות. ההגדרות החכמות שלנו מאפשרות לך לעצב את הסביבה שלך בנגיעה אחת.",
+                        footer_title: "הישאר מואר",
+                        footer_desc: "הצטרף לרשימת ההמתנה לעדכונים בלעדיים.",
+                        footer_name: "שם מלא",
+                        footer_email: "כתובת מייל",
+                        footer_phone: "מספר טלפון",
+                        footer_btn: "הרשמה"
                     }
                 };
 
@@ -209,7 +321,11 @@
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (this.translations[this.currentLang][key]) {
-                        el.innerHTML = this.translations[this.currentLang][key];
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                            el.placeholder = this.translations[this.currentLang][key];
+                        } else {
+                            el.innerHTML = this.translations[this.currentLang][key];
+                        }
                     }
                 });
 
@@ -224,6 +340,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             new Navbar('navbar');
             new MobileMenu();
+            new Carousel('gallery-carousel');
             new LanguageManager();
         });
     </script>
