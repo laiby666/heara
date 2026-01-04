@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>He-Ara Mark 3 | The Art of Illumination</title>
+    <title>He-Ara Siman 3 | The Art of Illumination</title>
 
     <!-- Fonts: Inter for UI, Playfair Display for Headings (Premium Feel) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,18 +28,38 @@
             </div>
 
             <!-- Desktop Menu -->
-            <nav class="nav-links">
-                <a href="#product" data-i18n="nav_product">Mark 3</a>
+            <nav class="nav-links desktop-only">
+                <a href="#product" data-i18n="nav_product">Siman 3</a>
                 <a href="#features" data-i18n="nav_tech">Technology</a>
                 <a href="#specs" data-i18n="nav_specs">Specifications</a>
             </nav>
 
             <!-- CTA & Lang -->
-            <div style="display: flex; gap: 1rem; align-items: center;">
-                <button id="lang-toggle" class="btn btn-small" style="padding: 0.5rem 1rem;">HE</button>
+            <div class="nav-actions desktop-only">
+                <button class="btn btn-small lang-toggle" style="padding: 0.5rem 1rem;">HE</button>
                 <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">
                     Pre-Order
                 </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobile-menu">
+            <nav class="mobile-nav-links">
+                <a href="#product" data-i18n="nav_product">Siman 3</a>
+                <a href="#features" data-i18n="nav_tech">Technology</a>
+                <a href="#specs" data-i18n="nav_specs">Specifications</a>
+            </nav>
+            <div class="mobile-actions">
+                <button class="btn btn-small lang-toggle">HE</button>
+                <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">Pre-Order</a>
             </div>
         </div>
     </header>
@@ -57,15 +77,15 @@
                     Control Light.<br />Master Atmosphere.
                 </h1>
                 <p class="hero-desc" data-i18n="hero_desc">
-                    The Mark 3 Triple Circuit Switch. Precision intensity and temperature control in a singular,
+                    The Siman 3 Triple Circuit Switch. Precision intensity and temperature control in a singular,
                     architectural interface.
                 </p>
 
                 <div class="hero-actions">
                     <button class="btn btn-gold" data-i18n="hero_btn_discover">
-                        Discover Mark 3
+                        Discover Siman 3
                     </button>
-                    <button class="btn btn-outline" data-i18n="hero_btn_watch">
+                    <button class="btn btn-gold" data-i18n="hero_btn_watch">
                         Watch Film
                     </button>
                 </div>
@@ -106,42 +126,77 @@
         }
 
         /**
+         * Mobile Menu Controller
+         */
+        class MobileMenu {
+            constructor() {
+                this.toggle = document.getElementById('mobile-toggle');
+                this.menu = document.getElementById('mobile-menu');
+                this.links = document.querySelectorAll('.mobile-nav-links a');
+
+                if (this.toggle && this.menu) {
+                    this.init();
+                }
+            }
+
+            init() {
+                this.toggle.addEventListener('click', () => {
+                    this.toggle.classList.toggle('active');
+                    this.menu.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+
+                // Close menu when clicking a link
+                this.links.forEach(link => {
+                    link.addEventListener('click', () => {
+                        this.toggle.classList.remove('active');
+                        this.menu.classList.remove('active');
+                        document.body.classList.remove('no-scroll');
+                    });
+                });
+            }
+        }
+
+        /**
          * Language Manager
          * Handles translations and RTL/LTR switching.
          */
         class LanguageManager {
             constructor() {
                 this.currentLang = 'en';
-                this.toggleBtn = document.getElementById('lang-toggle');
+                // Select all toggle buttons (desktop and mobile)
+                this.toggleBtns = document.querySelectorAll('.lang-toggle');
                 this.translations = {
                     en: {
-                        nav_product: "Mark 3",
+                        nav_product: "Siman 3",
                         nav_tech: "Technology",
                         nav_specs: "Specifications",
                         nav_preorder: "Pre-Order",
                         hero_label: "The New Standard",
                         hero_title: "Control Light.<br />Master Atmosphere.",
-                        hero_desc: "The Mark 3 Triple Circuit Switch. Precision intensity and temperature control in a singular, architectural interface.",
-                        hero_btn_discover: "Discover Mark 3",
+                        hero_desc: "The Siman 3 Triple Circuit Switch. Precision intensity and temperature control in a singular, architectural interface.",
+                        hero_btn_discover: "Discover Siman 3",
                         hero_btn_watch: "Watch Film",
                         lang_btn: "HE"
                     },
                     he: {
-                        nav_product: "Mark 3",
+                        nav_product: "סימן 3",
                         nav_tech: "טכנולוגיה",
                         nav_specs: "מפרט טכני",
                         nav_preorder: "הזמנה מוקדמת",
                         hero_label: "הסטנדרט החדש",
                         hero_title: "לשלוט באור.<br />לנהל את האווירה.",
-                        hero_desc: "מתג המעגל המשולש Mark 3. שליטה מדויקת בעוצמה ובטמפרטורה בממשק אדריכלי יחיד.",
-                        hero_btn_discover: "גלה את Mark 3",
+                        hero_desc: "מתג המעגל המשולש סימן 3. שליטה מדויקת בעוצמה ובטמפרטורה בממשק אדריכלי יחיד.",
+                        hero_btn_discover: "גלה את סימן 3",
                         hero_btn_watch: "צפה בסרטון",
                         lang_btn: "EN"
                     }
                 };
 
-                if (this.toggleBtn) {
-                    this.toggleBtn.addEventListener('click', () => this.toggleLanguage());
+                if (this.toggleBtns.length > 0) {
+                    this.toggleBtns.forEach(btn => {
+                        btn.addEventListener('click', () => this.toggleLanguage());
+                    });
                 }
             }
 
@@ -159,13 +214,16 @@
                 });
 
                 // Update button text
-                this.toggleBtn.textContent = this.translations[this.currentLang].lang_btn;
+                this.toggleBtns.forEach(btn => {
+                    btn.textContent = this.translations[this.currentLang].lang_btn;
+                });
             }
         }
 
         // Initialize Application
         document.addEventListener('DOMContentLoaded', () => {
             new Navbar('navbar');
+            new MobileMenu();
             new LanguageManager();
         });
     </script>
