@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>He-Ara Mark 3 | The Art of Illumination</title>
+
+    <!-- Fonts: Inter for UI, Playfair Display for Headings (Premium Feel) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation Component -->
+    <header id="navbar" class="navbar">
+        <div class="container navbar-inner">
+            <!-- Logo -->
+            <div class="logo">
+                HE-ARA
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="nav-links">
+                <a href="#product">Mark 3</a>
+                <a href="#features">Technology</a>
+                <a href="#specs">Specifications</a>
+            </nav>
+
+            <!-- CTA -->
+            <a href="#preorder" class="btn btn-small">
+                Pre-Order
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero Section Placeholder -->
+        <section id="hero" class="hero">
+            <!-- Ambient Light Effect (Background) -->
+            <div class="hero-glow"></div>
+
+            <div class="hero-content">
+                <span class="hero-label">The New Standard</span>
+                <h1 class="hero-title">
+                    Control Light.<br />Master Atmosphere.
+                </h1>
+                <p class="hero-desc">
+                    The Mark 3 Triple Circuit Switch. Precision intensity and temperature control in a singular,
+                    architectural interface.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="btn btn-gold">
+                        Discover Mark 3
+                    </button>
+                    <button class="btn btn-outline">
+                        Watch Film
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Application Logic -->
+    <script>
+        /**
+         * UI Component Base Class
+         * Establishes a pattern for modular UI elements.
+         */
+        class UIComponent {
+            constructor(elementId) {
+                this.element = document.getElementById(elementId);
+                if (this.element) this.init();
+            }
+            init() { console.warn('Init method not implemented'); }
+        }
+
+        /**
+         * Navbar Controller
+         * Handles scroll effects for the glassmorphism header.
+         */
+        class Navbar extends UIComponent {
+            init() {
+                window.addEventListener('scroll', () => this.handleScroll());
+            }
+
+            handleScroll() {
+                if (window.scrollY > 50) {
+                    this.element.classList.add('glass-nav');
+                } else {
+                    this.element.classList.remove('glass-nav');
+                }
+            }
+        }
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', () => {
+            new Navbar('navbar');
+        });
+    </script>
+</body>
+
+</html>
