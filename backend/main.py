@@ -187,38 +187,12 @@ async def update_lead(id: str, lead_update: LeadUpdateModel = Body(...)):
 
 @app.get("/api/products", response_model=List[ProductModel])
 async def get_products():
-    # Mock data matching the new schema
-    products = [
-        {
-            "id": "mark-3-white",
-            "name": "He-Ara Mark 3",
-            "model": "mark3",
-            "positions": 3,
-            "color": "white",
-            "price": 299.00,
-            "features": ["Smart Control", "Triple Circuit", "Temperature Adjustment", "App Integration"],
-            "imageUrl": "https://images.unsplash.com/photo-1513694203232-719a280e022f",
-            "inStock": True
-        },
-        {
-             "id": "mark-3-black",
-            "name": "He-Ara Mark 3 Black Edition",
-            "model": "mark3",
-            "positions": 3,
-            "color": "black",
-            "price": 349.00,
-            "features": ["Smart Control", "Triple Circuit", "Temperature Adjustment", "App Integration", "Matte Finish"],
-            "imageUrl": "https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d",
-            "inStock": True
-        }
-    ]
+    products = await db.products.find().to_list(100)
     return products
 
 @app.get("/api/products/{id}", response_model=ProductModel)
 async def get_product(id: str):
-    # In a real app, fetch from DB. Here we filter the mock list.
-    products = await get_products()
-    for product in products:
-        if product["id"] == id:
-            return product
-    raise HTTPException(status_code=404, detail="Product not found")
+    product = await db.products.find_one({"id": id})
+    if product is None:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return product
