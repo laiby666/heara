@@ -107,6 +107,8 @@ class ProductManager {
     }
 
     async init() {
+        if (!this.track) return;
+
         try {
             const response = await fetch(this.apiUrl);
             const products = await response.json();
@@ -130,7 +132,7 @@ class ProductManager {
             new Carousel(this.carouselId);
         } catch (error) {
             console.error('Error loading products:', error);
-            this.track.innerHTML = '<div style="color:white; text-align:center; padding:2rem;">Unable to load products</div>';
+            this.track.innerHTML = '<div style="color:white; text-align:center; padding:2rem;">Unable to load products. Is the server running?</div>';
         }
     }
 }
@@ -225,6 +227,152 @@ class LanguageManager {
     }
 }
 
+/**
+ * Registration Form Controller
+ * Handles form submission to the backend API.
+ */
+class RegistrationForm {
+    constructor(formSelector) {
+        this.form = document.querySelector(formSelector);
+        this.apiUrl = 'http://127.0.0.1:8000/api/leads';
+
+        if (this.form) {
+            this.init();
+        }
+    }
+
+    init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+
+        const submitBtn = this.form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        // Gather data
+        const formData = {
+            name: this.form.querySelector('input[type="text"]').value,
+            email: this.form.querySelector('input[type="email"]').value,
+            phone: this.form.querySelector('input[type="tel"]').value,
+            source: 'website',
+            status: 'new'
+        };
+
+        try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const response = await fetch(this.apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || 'Submission failed');
+            }
+
+            alert('Thank you! Your details have been saved.');
+            this.form.reset();
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('Error: ' + error.message + '\n\nPlease ensure the backend server is running.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    }
+}
+
+/**
+ * Admin Dashboard Controller
+ * Fetches and manages leads.
+ */
+class AdminDashboard {
+    constructor(tableId) {
+        this.table = document.getElementById(tableId);
+        this.tbody = this.table ? this.table.querySelector('tbody') : null;
+        this.apiUrl = 'http://127.0.0.1:8000/api/leads';
+
+        if (this.tbody) {
+            this.init();
+        }
+    }
+
+    async init() {
+        await this.fetchLeads();
+    }
+
+    async fetchLeads() {
+        try {
+            const response = await fetch(this.apiUrl);
+            const leads = await response.json();
+            this.renderLeads(leads);
+        } catch (error) {
+            console.error('Error fetching leads:', error);
+            this.tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color: #ef4444;">Error loading leads. Ensure backend is running.</td></tr>';
+        }
+    }
+
+    renderLeads(leads) {
+        this.tbody.innerHTML = '';
+
+        // Sort by date desc (newest first)
+        leads.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        leads.forEach(lead => {
+            const tr = document.createElement('tr');
+            const date = new Date(lead.createdAt).toLocaleDateString();
+
+            tr.innerHTML = `
+                <td>${date}</td>
+                <td><strong>${lead.name}</strong></td>
+                <td>${lead.email}</td>
+                <td>${lead.phone}</td>
+                <td><span class="status-badge status-${lead.status}">${lead.status}</span></td>
+                <td></td>
+            `;
+
+            // Create select element for actions
+            const select = document.createElement('select');
+            select.className = 'status-select';
+            select.innerHTML = `
+                <option value="new" ${lead.status === 'new' ? 'selected' : ''}>New</option>
+                <option value="contacted" ${lead.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="converted" ${lead.status === 'converted' ? 'selected' : ''}>Converted</option>
+                <option value="closed" ${lead.status === 'closed' ? 'selected' : ''}>Closed</option>
+            `;
+            select.addEventListener('change', async (e) => {
+                const success = await this.updateStatus(lead.id, e.target.value);
+                if (success) this.fetchLeads(); // Refresh table to update badge color
+            });
+
+            tr.lastElementChild.appendChild(select);
+            this.tbody.appendChild(tr);
+        });
+    }
+
+    async updateStatus(id, newStatus) {
+        try {
+            const response = await fetch(`${this.apiUrl}/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: newStatus })
+            });
+
+            if (!response.ok) throw new Error('Failed to update');
+            return true;
+        } catch (error) {
+            console.error('Error updating status:', error);
+            alert('Error updating status');
+            return false;
+        }
+    }
+}
+
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
     new Navbar('navbar');
@@ -232,4 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carousel is initialized inside ProductManager after data fetch
     new ProductManager('gallery-carousel').init();
     new LanguageManager();
+    new RegistrationForm('.registration-form');
+    new AdminDashboard('leads-table');
 });

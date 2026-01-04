@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>He-Ara | Admin Dashboard</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Simple Admin Header -->
+    <header id="navbar" class="navbar">
+        <div class="container navbar-inner">
+            <div class="logo">HE-ARA ADMIN</div>
+            <nav class="nav-links">
+                <a href="index.html">Back to Site</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 6rem; padding-bottom: 4rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h1 class="section-title" style="color: var(--brand-gold); margin: 0;">Leads Management</h1>
+            <button onclick="location.reload()" class="btn btn-small">Refresh Data</button>
+        </div>
+
+        <div class="table-container">
+            <table id="leads-table" class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Leads will be injected here via JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

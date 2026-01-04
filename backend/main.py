@@ -33,12 +33,12 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 origins = [
     "http://localhost:5500",
     "http://127.0.0.1:5500",
-    "*"  # Allow all for development
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=".*",  # Allow all origins for development with credentials
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -125,6 +125,7 @@ async def create_lead(lead: LeadModel = Body(...)):
     created_lead = await db.leads.find_one({"_id": result.inserted_id})
     # Map _id to id for response
     created_lead["id"] = str(created_lead["_id"])
+    created_lead["_id"] = str(created_lead["_id"])
     return created_lead
 
 @app.get("/api/leads", response_model=List[LeadModel])
@@ -146,6 +147,7 @@ async def get_leads(
     # Convert ObjectId to string for Pydantic
     for lead in leads:
         lead["id"] = str(lead["_id"])
+        lead["_id"] = str(lead["_id"])
     return leads
 
 @app.get("/api/leads/{id}", response_model=LeadModel)
@@ -158,6 +160,7 @@ async def get_lead(id: str):
         raise HTTPException(status_code=404, detail="Lead not found")
     
     lead["id"] = str(lead["_id"])
+    lead["_id"] = str(lead["_id"])
     return lead
 
 @app.patch("/api/leads/{id}", response_model=LeadModel)
@@ -181,6 +184,7 @@ async def update_lead(id: str, lead_update: LeadUpdateModel = Body(...)):
 
     updated_lead = await db.leads.find_one({"_id": ObjectId(id)})
     updated_lead["id"] = str(updated_lead["_id"])
+    updated_lead["_id"] = str(updated_lead["_id"])
     return updated_lead
 
 # Products Endpoints
