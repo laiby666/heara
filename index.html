@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@300;400;500&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
         rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -29,15 +29,18 @@
 
             <!-- Desktop Menu -->
             <nav class="nav-links">
-                <a href="#product">Mark 3</a>
-                <a href="#features">Technology</a>
-                <a href="#specs">Specifications</a>
+                <a href="#product" data-i18n="nav_product">Mark 3</a>
+                <a href="#features" data-i18n="nav_tech">Technology</a>
+                <a href="#specs" data-i18n="nav_specs">Specifications</a>
             </nav>
 
-            <!-- CTA -->
-            <a href="#preorder" class="btn btn-small">
-                Pre-Order
-            </a>
+            <!-- CTA & Lang -->
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button id="lang-toggle" class="btn btn-small" style="padding: 0.5rem 1rem;">HE</button>
+                <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">
+                    Pre-Order
+                </a>
+            </div>
         </div>
     </header>
 
@@ -49,20 +52,20 @@
             <div class="hero-glow"></div>
 
             <div class="hero-content">
-                <span class="hero-label">The New Standard</span>
-                <h1 class="hero-title">
+                <span class="hero-label" data-i18n="hero_label">The New Standard</span>
+                <h1 class="hero-title" data-i18n="hero_title">
                     Control Light.<br />Master Atmosphere.
                 </h1>
-                <p class="hero-desc">
+                <p class="hero-desc" data-i18n="hero_desc">
                     The Mark 3 Triple Circuit Switch. Precision intensity and temperature control in a singular,
                     architectural interface.
                 </p>
 
                 <div class="hero-actions">
-                    <button class="btn btn-gold">
+                    <button class="btn btn-gold" data-i18n="hero_btn_discover">
                         Discover Mark 3
                     </button>
-                    <button class="btn btn-outline">
+                    <button class="btn btn-outline" data-i18n="hero_btn_watch">
                         Watch Film
                     </button>
                 </div>
@@ -102,9 +105,68 @@
             }
         }
 
+        /**
+         * Language Manager
+         * Handles translations and RTL/LTR switching.
+         */
+        class LanguageManager {
+            constructor() {
+                this.currentLang = 'en';
+                this.toggleBtn = document.getElementById('lang-toggle');
+                this.translations = {
+                    en: {
+                        nav_product: "Mark 3",
+                        nav_tech: "Technology",
+                        nav_specs: "Specifications",
+                        nav_preorder: "Pre-Order",
+                        hero_label: "The New Standard",
+                        hero_title: "Control Light.<br />Master Atmosphere.",
+                        hero_desc: "The Mark 3 Triple Circuit Switch. Precision intensity and temperature control in a singular, architectural interface.",
+                        hero_btn_discover: "Discover Mark 3",
+                        hero_btn_watch: "Watch Film",
+                        lang_btn: "HE"
+                    },
+                    he: {
+                        nav_product: "Mark 3",
+                        nav_tech: "טכנולוגיה",
+                        nav_specs: "מפרט טכני",
+                        nav_preorder: "הזמנה מוקדמת",
+                        hero_label: "הסטנדרט החדש",
+                        hero_title: "לשלוט באור.<br />לנהל את האווירה.",
+                        hero_desc: "מתג המעגל המשולש Mark 3. שליטה מדויקת בעוצמה ובטמפרטורה בממשק אדריכלי יחיד.",
+                        hero_btn_discover: "גלה את Mark 3",
+                        hero_btn_watch: "צפה בסרטון",
+                        lang_btn: "EN"
+                    }
+                };
+
+                if (this.toggleBtn) {
+                    this.toggleBtn.addEventListener('click', () => this.toggleLanguage());
+                }
+            }
+
+            toggleLanguage() {
+                this.currentLang = this.currentLang === 'en' ? 'he' : 'en';
+                document.documentElement.dir = this.currentLang === 'he' ? 'rtl' : 'ltr';
+                document.documentElement.lang = this.currentLang;
+
+                // Update text content
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (this.translations[this.currentLang][key]) {
+                        el.innerHTML = this.translations[this.currentLang][key];
+                    }
+                });
+
+                // Update button text
+                this.toggleBtn.textContent = this.translations[this.currentLang].lang_btn;
+            }
+        }
+
         // Initialize Application
         document.addEventListener('DOMContentLoaded', () => {
             new Navbar('navbar');
+            new LanguageManager();
         });
     </script>
 </body>

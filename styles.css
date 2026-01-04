@@ -212,3 +212,26 @@ a {
         flex-direction: row;
     }
 }
+
+/* --- RTL & Hebrew Support --- */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] body {
+    font-family: 'Heebo', sans-serif;
+}
+
+[dir="rtl"] .hero-title,
+[dir="rtl"] .logo {
+    font-family: 'Frank Ruhl Libre', serif;
+}
+
+[dir="rtl"] .hero-label {
+    letter-spacing: 0.1em;
+    /* Reduced spacing for Hebrew readability */
+}
+
+[dir="rtl"] .btn {
+    letter-spacing: 0.05em;
+}
