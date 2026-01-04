@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException, Body, Query
+from fastapi import FastAPI, HTTPException, Body, Query, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field, EmailStr
@@ -13,6 +15,18 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI(title="He-Ara API")
+
+# --- Error Handling ---
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """
+    Custom handler to provide clear error messages for validation failures.
+    """
+    errors = [f"{err['loc'][-1]}: {err['msg']}" for err in exc.errors()]
+    return JSONResponse(
+        status_code=422,
+        content={"detail": "Validation Error", "errors": errors}
+    )
 
 # --- CORS Configuration ---
 # Allows the frontend to communicate with this backend
@@ -114,10 +128,19 @@ async def create_lead(lead: LeadModel = Body(...)):
     return created_lead
 
 @app.get("/api/leads", response_model=List[LeadModel])
-async def get_leads(status: Optional[LeadStatus] = None):
+async def get_leads(
+    status: Optional[LeadStatus] = None,
+    start_date: Optional[datetime] = None,
+    end_date: Optional[datetime] = None
+):
     query = {}
     if status:
         query["status"] = status.value
+    
+    if start_date or end_date:
+        query["createdAt"] = {}
+        if start_date: query["createdAt"]["$gte"] = start_date
+        if end_date: query["createdAt"]["$lte"] = end_date
     
     leads = await db.leads.find(query).to_list(1000)
     # Convert ObjectId to string for Pydantic
