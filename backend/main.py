@@ -77,9 +77,9 @@ class LeadModel(BaseModel):
                 "name": "Israel Israeli",
                 "phone": "050-1234567",
                 "email": "israel@example.com",
-                "message": "Interested in Mark 3",
+                "message": "Interested in Mark 1",
                 "source": "website",
-                "productInterest": "mark-3",
+                "productInterest": "mark-1",
                 "status": "new"
             }
         }

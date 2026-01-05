@@ -1,5 +1,6 @@
 fastapi
 uvicorn
 motor
-pydantic[email]
 python-dotenv
+pydantic
+email-validator

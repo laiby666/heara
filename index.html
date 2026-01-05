@@ -35,18 +35,17 @@
             </div>
 
             <!-- Desktop Menu -->
-            <nav class="nav-links desktop-only">
-                <a href="#product" data-i18n="nav_product">סימן 3</a>
-                <a href="#features" data-i18n="nav_tech">טכנולוגיה</a>
-                <a href="#specs" data-i18n="nav_specs">מפרט טכני</a>
+            <nav class="nav-links desktop-only" style="align-items: center;">
+                <a href="#features" data-i18n="nav_tech" style="font-size: 1.2rem;">טכנולוגיה</a>
+                <a href="#specs" data-i18n="nav_specs" style="font-size: 1.2rem;">מפרט טכני</a>
+                <a href="#newsletter" class="btn btn-small" data-i18n="nav_preorder" style="font-size: 1.2rem;">
+                    הזמנה
+                </a>
             </nav>
 
             <!-- CTA & Lang -->
             <div class="nav-actions desktop-only">
-                <button class="btn btn-small lang-toggle" style="padding: 0.5rem 1rem;">EN</button>
-                <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">
-                    הזמנה מוקדמת
-                </a>
+                <button class="btn btn-small lang-toggle" style="padding: 0.5rem 1rem; font-size: 1.2rem;">EN</button>
             </div>
 
             <!-- Mobile Toggle -->
@@ -63,10 +62,11 @@
                 <a href="#product" data-i18n="nav_product">סימן 3</a>
                 <a href="#features" data-i18n="nav_tech">טכנולוגיה</a>
                 <a href="#specs" data-i18n="nav_specs">מפרט טכני</a>
+                <a href="#newsletter" class="btn btn-small" data-i18n="nav_preorder">הזמנה</a>
             </nav>
             <div class="mobile-actions">
                 <button class="btn btn-small lang-toggle">EN</button>
-                <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">הזמנה מוקדמת</a>
+
             </div>
         </div>
     </header>
@@ -89,15 +89,21 @@
                 </p>
 
                 <div class="hero-actions">
-                    <button class="btn btn-gold" data-i18n="hero_btn_discover">
+                    <a href="https://he-ara.co.il/mark1-all/" class="btn btn-gold" data-i18n="hero_btn_discover">
                         גלה את החוויה
-                    </button>
+                    </a>
                     <button class="btn btn-gold" id="watch-film-btn" data-i18n="hero_btn_watch">
                         צפה בהדמיה
                     </button>
                 </div>
             </div>
         </section>
+
+        <!-- Product Image Insert -->
+        <div class="container" style="text-align: center; margin: 4rem auto;">
+            <img src="https://he-ara.co.il/wp-content/uploads/2025/04/MARK1-3POS-Black-ON.webp" alt="Mark 1 Switch"
+                style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        </div>
 
         <!-- Features Section -->
         <section id="features" class="section-features">
@@ -153,6 +159,58 @@
             </div>
         </section>
 
+        <!-- Specifications Section -->
+        <section id="specs" class="section-specs" style="padding: 4rem 0; background-color: rgba(0,0,0,0.02);">
+            <div class="container">
+                <div class="text-center mb-large">
+                    <h2 class="section-title" data-i18n="nav_specs">מפרט טכני</h2>
+                </div>
+
+                <div class="specs-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: start;">
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_voltage_label">מתח כניסה:
+                        </h4>
+                        <p data-i18n="spec_voltage_val">110-240V AC/50~60Hz</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_power_label">הספק מרבי:
+                        </h4>
+                        <p data-i18n="spec_power_val">500W</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_dims_label">מידות הפאנל:
+                        </h4>
+                        <p data-i18n="spec_dims_val">124x90x2 mm</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_box_label">תיבת חיבורים
+                            שקופה:</h4>
+                        <p data-i18n="spec_box_val">לנוחות ולאבטחת המגעים החשמליים</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_wifi_label">תמיכת Wi-Fi:
+                        </h4>
+                        <p data-i18n="spec_wifi_val">Wi-Fi 2.4GHz</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_install_label">התקנה:</h4>
+                        <p data-i18n="spec_install_val">תואם קופסת חיבורים 3-4 מודול.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_standard_label">תקן
+                            ישראלי:</h4>
+                        <p data-i18n="spec_standard_val">נבדק ואושר לפי התקן הישראלי 33 IS חלק 1</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4 style="font-weight: bold; margin-bottom: 0.5rem;" data-i18n="spec_multi_label">רב תכליתי:
+                        </h4>
+                        <p data-i18n="spec_multi_val">מתאים לכל סוגי התאורה. יכול לשמש כדימר או כמפסק חכם.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Showcase / Gallery Section -->
         <section id="showcase" class="section-showcase">
             <div class="container">
@@ -166,18 +224,16 @@
                 <div class="carousel-container" id="gallery-carousel">
                     <div class="carousel-track">
                         <div class="carousel-slide">
-                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop"
+                            <img src="https://loremflickr.com/1200/800/lighting,interior?random=1"
                                 alt="סלון באווירה רומנטית">
                             <div class="slide-caption" data-i18n="slide_1_caption">ערב רומנטי בסלון</div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=1200&auto=format&fit=crop"
-                                alt="חדר שינה מודרני">
+                            <img src="https://loremflickr.com/1200/800/lighting,bedroom?random=2" alt="חדר שינה מודרני">
                             <div class="slide-caption" data-i18n="slide_2_caption">יקיצה טבעית ורכה</div>
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop"
-                                alt="פינת ישיבה">
+                            <img src="https://loremflickr.com/1200/800/lighting,livingroom?random=3" alt="פינת ישיבה">
                             <div class="slide-caption" data-i18n="slide_3_caption">רגעים של שלווה</div>
                         </div>
                         <!-- Products will be loaded here dynamically -->
@@ -201,12 +257,16 @@
 
     <!-- Registration Footer -->
     <footer id="newsletter" class="footer-registration">
-        <div class="container footer-inner">
+        <div class="container footer-inner"
+            style="display: flex; flex-direction: column; align-items: center; text-align: center;">
             <div class="footer-text">
-                <h4 data-i18n="footer_title">הישארו מעודכנים</h4>
-                <p data-i18n="footer_desc">הצטרפו לרשימת ההמתנה וקבלו עדכונים בלעדיים.</p>
+                <h4 data-i18n="footer_title"
+                    style="font-size: 3rem; color: #d4af37; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif;">
+                    הצטרפו לאווירה המושלמת</h4>
+                <p data-i18n="footer_desc" style="font-size: 1.5rem; margin-bottom: 2rem; opacity: 0.9;">השאירו פרטים
+                    וניצור אתכם קשר בהקדם</p>
             </div>
-            <form class="registration-form">
+            <form class="registration-form" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                 <input type="text" placeholder="שם מלא" class="input-field" data-i18n="footer_name" required>
                 <input type="email" placeholder="כתובת מייל" class="input-field" data-i18n="footer_email" required>
                 <input type="tel" placeholder="מספר טלפון" class="input-field" data-i18n="footer_phone" required>

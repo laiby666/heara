@@ -122,7 +122,6 @@ class ProductManager {
                     <img src="${product.imageUrl}" alt="${product.name}">
                     <div class="slide-caption">
                         ${product.name}
-                        <span style="margin: 0 0.5rem; color: var(--brand-gold);">$${product.price}</span>
                     </div>
                 `;
                 this.track.appendChild(slide);
@@ -147,13 +146,13 @@ class LanguageManager {
         this.toggleBtns = document.querySelectorAll('.lang-toggle');
         this.translations = {
             en: {
-                nav_product: "Siman 3",
+                nav_product: "Mark 1",
                 nav_tech: "Technology",
                 nav_specs: "Specifications",
-                nav_preorder: "Pre-Order",
+                nav_preorder: "Order",
                 hero_label: "The New Standard",
                 hero_title: "Control Light.<br />Master Atmosphere.",
-                hero_desc: "The Siman 3 Triple Circuit Switch. Precision intensity and temperature control in a singular, architectural interface.",
+                hero_desc: "The Mark 1 Triple Circuit Switch. Precision intensity and temperature control in a singular, architectural interface.",
                 hero_btn_discover: "Discover Experience",
                 hero_btn_watch: "Watch Simulation",
                 features_title: "Advanced Features",
@@ -180,16 +179,32 @@ class LanguageManager {
                 footer_name: "Full Name",
                 footer_email: "Email Address",
                 footer_phone: "Phone Number",
-                footer_btn: "Subscribe"
+                footer_btn: "Subscribe",
+                spec_voltage_label: "Input Voltage:",
+                spec_voltage_val: "110-240V AC/50~60Hz",
+                spec_power_label: "Max Power:",
+                spec_power_val: "500W",
+                spec_dims_label: "Panel Dimensions:",
+                spec_dims_val: "124x90x2 mm",
+                spec_box_label: "Transparent Junction Box:",
+                spec_box_val: "For convenience and electrical safety",
+                spec_wifi_label: "Wi-Fi Support:",
+                spec_wifi_val: "Wi-Fi 2.4GHz",
+                spec_install_label: "Installation:",
+                spec_install_val: "Compatible with 3-4 module junction boxes.",
+                spec_standard_label: "Israeli Standard:",
+                spec_standard_val: "Tested and approved per IS 33 Part 1",
+                spec_multi_label: "Multi-purpose:",
+                spec_multi_val: "Suitable for all lighting types. Functions as dimmer or smart switch."
             },
             he: {
-                nav_product: "סימן 3",
+                nav_product: "סימן 1",
                 nav_tech: "טכנולוגיה",
                 nav_specs: "מפרט טכני",
-                nav_preorder: "הזמנה מוקדמת",
+                nav_preorder: "הזמנה",
                 hero_label: "הסטנדרט החדש",
                 hero_title: "לשלוט באור.<br />לנהל את האווירה.",
-                hero_desc: "הכירו את Mark 3. המתג החכם שמשלב עיצוב יוקרתי עם שליטה חכמה בטמפרטורה ובעוצמת התאורה. כי לאווירה בבית אין מחיר.",
+                hero_desc: "הכירו את סימן 1. המתג החכם שמשלב עיצוב יוקרתי עם שליטה חכמה בטמפרטורה ובעוצמת התאורה. כי לאווירה בבית אין מחיר.",
                 hero_btn_discover: "גלה את החוויה",
                 hero_btn_watch: "צפה בהדמיה",
                 features_title: "תכונות מתקדמות",
@@ -211,12 +226,28 @@ class LanguageManager {
                 slide_3_caption: "רגעים של שלווה",
                 gallery_quote: "\"הבית שלך הוא המבצר שלך. תן לו את האור שמגיע לו.\"",
                 gallery_desc: "מעבר חלק בין מצבי תאורה שונים. המערכת החכמה שלנו מאפשרת לך לייצר את האווירה המושלמת לאירוח, קריאה או מנוחה - בלחיצת כפתור אחת.",
-                footer_title: "הישארו מעודכנים",
-                footer_desc: "הצטרפו לרשימת ההמתנה וקבלו עדכונים בלעדיים.",
+                footer_title: "הצטרפו לאווירה המושלמת",
+                footer_desc: "השאירו פרטים וניצור אתכם קשר בהקדם",
                 footer_name: "שם מלא",
                 footer_email: "כתובת מייל",
                 footer_phone: "מספר טלפון",
-                footer_btn: "הרשמה"
+                footer_btn: "הרשמה",
+                spec_voltage_label: "מתח כניסה:",
+                spec_voltage_val: "110-240V AC/50~60Hz",
+                spec_power_label: "הספק מרבי:",
+                spec_power_val: "500W",
+                spec_dims_label: "מידות הפאנל:",
+                spec_dims_val: "124x90x2 mm",
+                spec_box_label: "תיבת חיבורים שקופה:",
+                spec_box_val: "לנוחות ולאבטחת המגעים החשמליים",
+                spec_wifi_label: "תמיכת Wi-Fi:",
+                spec_wifi_val: "Wi-Fi 2.4GHz",
+                spec_install_label: "התקנה:",
+                spec_install_val: "תואם קופסת חיבורים 3-4 מודול.",
+                spec_standard_label: "תקן ישראלי:",
+                spec_standard_val: "נבדק ואושר לפי התקן הישראלי 33 IS חלק 1",
+                spec_multi_label: "רב תכליתי:",
+                spec_multi_val: "מתאים לכל סוגי התאורה. יכול לשמש כדימר או כמפסק חכם."
             }
         };
 
@@ -225,6 +256,8 @@ class LanguageManager {
                 btn.addEventListener('click', () => this.toggleLanguage());
             });
         }
+
+        this.initLayoutFix();
     }
 
     toggleLanguage() {
@@ -246,6 +279,21 @@ class LanguageManager {
         this.toggleBtns.forEach(btn => {
             btn.textContent = this.translations[this.currentLang].lang_btn;
         });
+    }
+
+    initLayoutFix() {
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 768px) {
+                html[dir="ltr"] section,
+                html[dir="ltr"] header,
+                html[dir="ltr"] footer {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     }
 }
 
