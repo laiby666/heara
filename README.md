@@ -56,9 +56,43 @@ To avoid CORS issues, the HTML files must be served via a local server (not by d
 
 ---
 
+## 🇮🇱 הוראות הרצה בעברית
+
+### דרישות קדם
+לפני הרצת הפרויקט, וודאו שמותקנים אצלכם:
+1. **Python 3.8+**
+2. **MongoDB** (חייב לרוץ ברקע)
+3. **VS Code** (מומלץ) עם תוסף "Live Server".
+
+### התקנה והרצה
+
+1. **התקנת תלויות צד שרת:**
+   פתחו טרמינל בתיקיית `backend` והריצו:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **הפעלת השרת (Backend):**
+   מאותה תיקייה (`backend`), הריצו:
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+3. **הפעלת צד הלקוח (Frontend):**
+   פתחו את `index.html` ב-VS Code, לחצו קליק ימני ובחרו **"Open with Live Server"**.
+
+---
+
 ## 🛠 Project Structure
 
 *   `index.html` - Main landing page.
 *   `admin.html` - Admin dashboard to view and manage leads.
 *   `script.js` - Frontend logic (UI, API calls, Translations).
 *   `backend/` - Python FastAPI server and database logic.
+
+### מבנה הפרויקט
+
+*   `index.html` - דף הנחיתה הראשי.
+*   `admin.html` - לוח בקרה למנהל לצפייה וניהול לידים.
+*   `script.js` - לוגיקת צד לקוח (ממשק משתמש, קריאות API, תרגומים).
+*   `backend/` - שרת Python FastAPI ולוגיקת מסד נתונים.
