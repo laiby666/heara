@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="he" dir="rtl" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,13 @@
 
 <body>
 
+    <!-- Ambient Background Effects -->
+    <div class="ambient-background">
+        <div class="light-ray ray-1"></div>
+        <div class="light-ray ray-2"></div>
+        <div class="light-ray ray-3"></div>
+    </div>
+
     <!-- Navigation Component -->
     <header id="navbar" class="navbar">
         <div class="container navbar-inner">
@@ -29,16 +36,16 @@
 
             <!-- Desktop Menu -->
             <nav class="nav-links desktop-only">
-                <a href="#product" data-i18n="nav_product">Siman 3</a>
-                <a href="#features" data-i18n="nav_tech">Technology</a>
-                <a href="#specs" data-i18n="nav_specs">Specifications</a>
+                <a href="#product" data-i18n="nav_product">סימן 3</a>
+                <a href="#features" data-i18n="nav_tech">טכנולוגיה</a>
+                <a href="#specs" data-i18n="nav_specs">מפרט טכני</a>
             </nav>
 
             <!-- CTA & Lang -->
             <div class="nav-actions desktop-only">
-                <button class="btn btn-small lang-toggle" style="padding: 0.5rem 1rem;">HE</button>
+                <button class="btn btn-small lang-toggle" style="padding: 0.5rem 1rem;">EN</button>
                 <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">
-                    Pre-Order
+                    הזמנה מוקדמת
                 </a>
             </div>
 
@@ -53,13 +60,13 @@
         <!-- Mobile Menu Overlay -->
         <div class="mobile-menu" id="mobile-menu">
             <nav class="mobile-nav-links">
-                <a href="#product" data-i18n="nav_product">Siman 3</a>
-                <a href="#features" data-i18n="nav_tech">Technology</a>
-                <a href="#specs" data-i18n="nav_specs">Specifications</a>
+                <a href="#product" data-i18n="nav_product">סימן 3</a>
+                <a href="#features" data-i18n="nav_tech">טכנולוגיה</a>
+                <a href="#specs" data-i18n="nav_specs">מפרט טכני</a>
             </nav>
             <div class="mobile-actions">
-                <button class="btn btn-small lang-toggle">HE</button>
-                <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">Pre-Order</a>
+                <button class="btn btn-small lang-toggle">EN</button>
+                <a href="#preorder" class="btn btn-small" data-i18n="nav_preorder">הזמנה מוקדמת</a>
             </div>
         </div>
     </header>
@@ -72,22 +79,76 @@
             <div class="hero-glow"></div>
 
             <div class="hero-content">
-                <span class="hero-label" data-i18n="hero_label">The New Standard</span>
+                <span class="hero-label" data-i18n="hero_label">הסטנדרט החדש</span>
                 <h1 class="hero-title" data-i18n="hero_title">
-                    Control Light.<br />Master Atmosphere.
+                    לשלוט באור.<br />לנהל את האווירה.
                 </h1>
                 <p class="hero-desc" data-i18n="hero_desc">
-                    The Siman 3 Triple Circuit Switch. Precision intensity and temperature control in a singular,
-                    architectural interface.
+                    הכירו את Mark 3. המתג החכם שמשלב עיצוב יוקרתי עם שליטה חכמה בטמפרטורה ובעוצמת התאורה. כי לאווירה
+                    בבית אין מחיר.
                 </p>
 
                 <div class="hero-actions">
                     <button class="btn btn-gold" data-i18n="hero_btn_discover">
-                        Discover Siman 3
+                        גלה את החוויה
                     </button>
-                    <button class="btn btn-gold" data-i18n="hero_btn_watch">
-                        Watch Film
+                    <button class="btn btn-gold" id="watch-film-btn" data-i18n="hero_btn_watch">
+                        צפה בהדמיה
                     </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section-features">
+            <div class="container">
+                <div class="text-center mb-large">
+                    <h2 class="section-title" data-i18n="features_title">תכונות מתקדמות</h2>
+                    <p class="section-subtitle" data-i18n="features_subtitle">טכנולוגיה שרואה אותך</p>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Feature 1: Mobile Control -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title" data-i18n="feat_mobile_title">שליטה מהנייד</h3>
+                        <p class="feature-desc" data-i18n="feat_mobile_desc">שליטה מלאה בתאורה, בתרחישים ובטמפרטורה מכל
+                            מקום בעולם דרך האפליקציה.</p>
+                    </div>
+
+                    <!-- Feature 2: Glass Design -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title" data-i18n="feat_glass_title">עיצוב זכוכית</h3>
+                        <p class="feature-desc" data-i18n="feat_glass_desc">זכוכית מחוסמת יוקרתית, עמידה בפני שריטות
+                            וקלה לניקוי, למראה נקי ואלגנטי תמיד.</p>
+                    </div>
+
+                    <!-- Feature 3: Shabbat Mode -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title" data-i18n="feat_shabbat_title">מצב שבת</h3>
+                        <p class="feature-desc" data-i18n="feat_shabbat_desc">מאושר הלכתית. שעון אסטרונומי מובנה
+                            ותוכניות חכמות לשבתות וחגים ללא חשש חילול.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -97,8 +158,8 @@
             <div class="container">
                 <!-- Pre-image Text -->
                 <div class="text-block text-center mb-large">
-                    <h2 class="section-title" data-i18n="gallery_title">Moods & Atmospheres</h2>
-                    <p class="section-subtitle" data-i18n="gallery_subtitle">Experience the spectrum of light.</p>
+                    <h2 class="section-title" data-i18n="gallery_title">עיצוב פוגש טכנולוגיה</h2>
+                    <p class="section-subtitle" data-i18n="gallery_subtitle">חוויה של אור וצבע בכל חדר בבית</p>
                 </div>
 
                 <!-- Carousel -->
@@ -106,18 +167,18 @@
                     <div class="carousel-track">
                         <div class="carousel-slide">
                             <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop"
-                                alt="Romantic Living Room">
-                            <div class="slide-caption" data-i18n="slide_1_caption">Romantic Evening</div>
+                                alt="סלון באווירה רומנטית">
+                            <div class="slide-caption" data-i18n="slide_1_caption">ערב רומנטי בסלון</div>
                         </div>
                         <div class="carousel-slide">
                             <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=1200&auto=format&fit=crop"
-                                alt="Modern Bedroom">
-                            <div class="slide-caption" data-i18n="slide_2_caption">Morning Clarity</div>
+                                alt="חדר שינה מודרני">
+                            <div class="slide-caption" data-i18n="slide_2_caption">יקיצה טבעית ורכה</div>
                         </div>
                         <div class="carousel-slide">
                             <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop"
-                                alt="Cozy Lounge">
-                            <div class="slide-caption" data-i18n="slide_3_caption">Deep Relaxation</div>
+                                alt="פינת ישיבה">
+                            <div class="slide-caption" data-i18n="slide_3_caption">רגעים של שלווה</div>
                         </div>
                         <!-- Products will be loaded here dynamically -->
                     </div>
@@ -127,11 +188,11 @@
 
                 <!-- Post-image Text -->
                 <div class="text-block mt-large text-center">
-                    <h3 class="text-highlight" data-i18n="gallery_quote">"Light is the fourth dimension of
-                        architecture."</h3>
+                    <h3 class="text-highlight" data-i18n="gallery_quote">"הבית שלך הוא המבצר שלך. תן לו את האור שמגיע
+                        לו."</h3>
                     <p class="text-body" data-i18n="gallery_desc">
-                        Seamlessly transition between scenes. Our API-driven presets allow you to curate your
-                        environment with a single touch.
+                        מעבר חלק בין מצבי תאורה שונים. המערכת החכמה שלנו מאפשרת לך לייצר את האווירה המושלמת לאירוח,
+                        קריאה או מנוחה - בלחיצת כפתור אחת.
                     </p>
                 </div>
             </div>
@@ -142,17 +203,36 @@
     <footer id="newsletter" class="footer-registration">
         <div class="container footer-inner">
             <div class="footer-text">
-                <h4 data-i18n="footer_title">Stay Illuminated</h4>
-                <p data-i18n="footer_desc">Join the waitlist for exclusive updates.</p>
+                <h4 data-i18n="footer_title">הישארו מעודכנים</h4>
+                <p data-i18n="footer_desc">הצטרפו לרשימת ההמתנה וקבלו עדכונים בלעדיים.</p>
             </div>
             <form class="registration-form">
-                <input type="text" placeholder="Full Name" class="input-field" data-i18n="footer_name" required>
-                <input type="email" placeholder="Email Address" class="input-field" data-i18n="footer_email" required>
-                <input type="tel" placeholder="Phone Number" class="input-field" data-i18n="footer_phone" required>
-                <button type="submit" class="btn btn-gold" data-i18n="footer_btn">Subscribe</button>
+                <input type="text" placeholder="שם מלא" class="input-field" data-i18n="footer_name" required>
+                <input type="email" placeholder="כתובת מייל" class="input-field" data-i18n="footer_email" required>
+                <input type="tel" placeholder="מספר טלפון" class="input-field" data-i18n="footer_phone" required>
+                <button type="submit" class="btn btn-gold" data-i18n="footer_btn">הרשמה</button>
             </form>
         </div>
     </footer>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="video-simulation">
+                <!-- Background Image of Bedroom -->
+                <div class="room-bg"></div>
+                <!-- Lighting Overlay Animation -->
+                <div class="light-overlay"></div>
+                <div class="simulation-controls">
+                    <button class="sim-btn" data-mode="warm" data-i18n="sim_warm">Warm</button>
+                    <button class="sim-btn" data-mode="cool" data-i18n="sim_cool">Cool</button>
+                    <button class="sim-btn" data-mode="party" data-i18n="sim_party">Party</button>
+                </div>
+                <div class="simulation-label">הדמיית מצבי תאורה חכמה</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Application Logic -->
     <script src="script.js"></script>

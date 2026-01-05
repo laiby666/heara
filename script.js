@@ -143,7 +143,7 @@ class ProductManager {
  */
 class LanguageManager {
     constructor() {
-        this.currentLang = 'en';
+        this.currentLang = 'he';
         this.toggleBtns = document.querySelectorAll('.lang-toggle');
         this.translations = {
             en: {
@@ -154,16 +154,27 @@ class LanguageManager {
                 hero_label: "The New Standard",
                 hero_title: "Control Light.<br />Master Atmosphere.",
                 hero_desc: "The Siman 3 Triple Circuit Switch. Precision intensity and temperature control in a singular, architectural interface.",
-                hero_btn_discover: "Discover Siman 3",
-                hero_btn_watch: "Watch Film",
+                hero_btn_discover: "Discover Experience",
+                hero_btn_watch: "Watch Simulation",
+                features_title: "Advanced Features",
+                features_subtitle: "Technology that sees you",
+                feat_mobile_title: "Mobile Control",
+                feat_mobile_desc: "Full control of lighting, scenes, and temperature from anywhere via the app.",
+                feat_glass_title: "Glass Design",
+                feat_glass_desc: "Premium tempered glass, scratch-resistant and easy to clean, for a pristine look.",
+                feat_shabbat_title: "Shabbat Mode",
+                feat_shabbat_desc: "Halachically approved. Built-in astronomical clock and smart schedules for Shabbat and holidays.",
+                sim_warm: "Warm",
+                sim_cool: "Cool",
+                sim_party: "Party",
                 lang_btn: "HE",
-                gallery_title: "Moods & Atmospheres",
-                gallery_subtitle: "Experience the spectrum of light.",
+                gallery_title: "Design Meets Technology",
+                gallery_subtitle: "Light and color experience in every room.",
                 slide_1_caption: "Romantic Evening",
-                slide_2_caption: "Morning Clarity",
-                slide_3_caption: "Deep Relaxation",
-                gallery_quote: "\"Light is the fourth dimension of architecture.\"",
-                gallery_desc: "Seamlessly transition between scenes. Our API-driven presets allow you to curate your environment with a single touch.",
+                slide_2_caption: "Natural Awakening",
+                slide_3_caption: "Moments of Peace",
+                gallery_quote: "\"Your home is your castle. Give it the light it deserves.\"",
+                gallery_desc: "Seamless transition between lighting modes. Our smart system allows you to create the perfect atmosphere for hosting, reading, or relaxing - with a single touch.",
                 footer_title: "Stay Illuminated",
                 footer_desc: "Join the waitlist for exclusive updates.",
                 footer_name: "Full Name",
@@ -178,19 +189,30 @@ class LanguageManager {
                 nav_preorder: "הזמנה מוקדמת",
                 hero_label: "הסטנדרט החדש",
                 hero_title: "לשלוט באור.<br />לנהל את האווירה.",
-                hero_desc: "מתג המעגל המשולש סימן 3. שליטה מדויקת בעוצמה ובטמפרטורה בממשק אדריכלי יחיד.",
-                hero_btn_discover: "גלה את סימן 3",
-                hero_btn_watch: "צפה בסרטון",
+                hero_desc: "הכירו את Mark 3. המתג החכם שמשלב עיצוב יוקרתי עם שליטה חכמה בטמפרטורה ובעוצמת התאורה. כי לאווירה בבית אין מחיר.",
+                hero_btn_discover: "גלה את החוויה",
+                hero_btn_watch: "צפה בהדמיה",
+                features_title: "תכונות מתקדמות",
+                features_subtitle: "טכנולוגיה שרואה אותך",
+                feat_mobile_title: "שליטה מהנייד",
+                feat_mobile_desc: "שליטה מלאה בתאורה, בתרחישים ובטמפרטורה מכל מקום בעולם דרך האפליקציה.",
+                feat_glass_title: "עיצוב זכוכית",
+                feat_glass_desc: "זכוכית מחוסמת יוקרתית, עמידה בפני שריטות וקלה לניקוי, למראה נקי ואלגנטי תמיד.",
+                feat_shabbat_title: "מצב שבת",
+                feat_shabbat_desc: "מאושר הלכתית. שעון אסטרונומי מובנה ותוכניות חכמות לשבתות וחגים ללא חשש חילול.",
+                sim_warm: "חם",
+                sim_cool: "קר",
+                sim_party: "צבעוני",
                 lang_btn: "EN",
-                gallery_title: "מצבי רוח ואווירה",
-                gallery_subtitle: "חווה את כל ספקטרום האור.",
-                slide_1_caption: "ערב רומנטי",
-                slide_2_caption: "צלילות של בוקר",
-                slide_3_caption: "רגיעה עמוקה",
-                gallery_quote: "\"אור הוא המימד הרביעי של הארכיטקטורה.\"",
-                gallery_desc: "עבור בצורה חלקה בין סצנות. ההגדרות החכמות שלנו מאפשרות לך לעצב את הסביבה שלך בנגיעה אחת.",
-                footer_title: "הישאר מואר",
-                footer_desc: "הצטרף לרשימת ההמתנה לעדכונים בלעדיים.",
+                gallery_title: "עיצוב פוגש טכנולוגיה",
+                gallery_subtitle: "חוויה של אור וצבע בכל חדר בבית",
+                slide_1_caption: "ערב רומנטי בסלון",
+                slide_2_caption: "יקיצה טבעית ורכה",
+                slide_3_caption: "רגעים של שלווה",
+                gallery_quote: "\"הבית שלך הוא המבצר שלך. תן לו את האור שמגיע לו.\"",
+                gallery_desc: "מעבר חלק בין מצבי תאורה שונים. המערכת החכמה שלנו מאפשרת לך לייצר את האווירה המושלמת לאירוח, קריאה או מנוחה - בלחיצת כפתור אחת.",
+                footer_title: "הישארו מעודכנים",
+                footer_desc: "הצטרפו לרשימת ההמתנה וקבלו עדכונים בלעדיים.",
                 footer_name: "שם מלא",
                 footer_email: "כתובת מייל",
                 footer_phone: "מספר טלפון",
@@ -373,6 +395,55 @@ class AdminDashboard {
     }
 }
 
+/**
+ * Video Modal Controller
+ */
+class VideoModal {
+    constructor() {
+        this.modal = document.getElementById('video-modal');
+        this.btn = document.getElementById('watch-film-btn');
+        this.closeBtn = document.querySelector('.modal-close');
+        this.overlay = this.modal ? this.modal.querySelector('.light-overlay') : null;
+        this.controls = this.modal ? this.modal.querySelectorAll('.sim-btn') : [];
+
+        if (this.modal && this.btn) {
+            this.init();
+        }
+    }
+
+    init() {
+        this.btn.addEventListener('click', () => {
+            this.modal.classList.add('active');
+        });
+
+        this.closeBtn.addEventListener('click', () => {
+            this.modal.classList.remove('active');
+        });
+
+        // Close on click outside
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.modal.classList.remove('active');
+            }
+        });
+
+        // Manual Controls
+        this.controls.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const mode = btn.dataset.mode;
+
+                // Update active button state
+                this.controls.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update overlay class
+                this.overlay.className = 'light-overlay'; // Reset
+                this.overlay.classList.add(mode);
+            });
+        });
+    }
+}
+
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
     new Navbar('navbar');
@@ -381,5 +452,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new ProductManager('gallery-carousel').init();
     new LanguageManager();
     new RegistrationForm('.registration-form');
+    new VideoModal();
     new AdminDashboard('leads-table');
 });

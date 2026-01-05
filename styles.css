@@ -612,3 +612,304 @@ a {
 .status-select option {
     background-color: var(--bg-color);
 }
+
+/* --- Features Section --- */
+.section-features {
+    padding: 6rem 0;
+    background-color: var(--bg-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--brand-gold);
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem;
+    color: var(--brand-gold);
+}
+
+.feature-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.feature-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- Ambient Background Rays --- */
+.ambient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.light-ray {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: floatLight 10s infinite alternate ease-in-out;
+}
+
+.ray-1 {
+    top: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--brand-gold) 0%, transparent 70%);
+    animation-delay: 0s;
+}
+
+.ray-2 {
+    bottom: 10%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #fbbf24 0%, transparent 70%);
+    /* Amber */
+    animation-delay: -5s;
+    opacity: 0.2;
+}
+
+.ray-3 {
+    top: 40%;
+    right: 20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--white) 0%, transparent 70%);
+    opacity: 0.1;
+    animation-duration: 15s;
+}
+
+@keyframes floatLight {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, 50px) scale(1.1);
+    }
+}
+
+/* --- Video Modal & Simulation --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.modal-close:hover {
+    background: var(--brand-gold);
+}
+
+.video-simulation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.room-bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200&auto=format&fit=crop');
+    /* Bedroom image */
+    background-size: cover;
+    background-position: center;
+}
+
+.light-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: overlay;
+    /* Blends color with the room image */
+    animation: lightCycle 12s infinite;
+}
+
+.simulation-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+}
+
+@keyframes lightCycle {
+    0% {
+        background-color: rgba(255, 200, 100, 0.6);
+    }
+
+    /* Warm / Morning */
+    25% {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Day / Cool */
+    50% {
+        background-color: rgba(100, 200, 255, 0.3);
+    }
+
+    /* Focus / Blue */
+    75% {
+        background-color: rgba(255, 100, 100, 0.4);
+    }
+
+    /* Sunset / Romantic */
+    100% {
+        background-color: rgba(255, 200, 100, 0.6);
+    }
+}
+
+/* --- Simulation Controls --- */
+.simulation-controls {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 20;
+}
+
+.sim-btn {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.sim-btn:hover,
+.sim-btn.active {
+    background: var(--brand-gold);
+    border-color: var(--brand-gold);
+    color: var(--bg-color);
+}
+
+/* Manual Modes Overrides */
+.light-overlay.warm {
+    animation: none;
+    background-color: rgba(255, 160, 60, 0.5);
+    /* Warm Amber */
+}
+
+.light-overlay.cool {
+    animation: none;
+    background-color: rgba(200, 230, 255, 0.5);
+    /* Cool Blue */
+}
+
+.light-overlay.party {
+    animation: partyCycle 2s infinite linear;
+    /* Fast changing colors */
+}
+
+@keyframes partyCycle {
+    0% {
+        background-color: rgba(255, 0, 0, 0.3);
+    }
+
+    33% {
+        background-color: rgba(0, 255, 0, 0.3);
+    }
+
+    66% {
+        background-color: rgba(0, 0, 255, 0.3);
+    }
+
+    100% {
+        background-color: rgba(255, 0, 0, 0.3);
+    }
+}
